@@ -41,8 +41,8 @@ namespace tool {
 		Database createNewDatabase(size_t preallocatedSize = 0) const;
 		Command command_;
 	
-		std::string databaseName_;		// --db=str
-		std::string dir_;				// --dir=directory
+		boost::filesystem::path databasePath_;	// --db=str
+		boost::filesystem::path dir_;			// --dir=directory
 		bool log_;						// --log
 
 		bool quiet_;					// --quiet

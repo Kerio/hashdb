@@ -122,7 +122,7 @@ namespace hashdb {
 		return static_cast<size_type>(argc_ - 1);
 	}
 
-	void CommandLine::raiseIfUnused()
+	std::string CommandLine::listUnusedOptions() const
 	{
 		std::string unusedOptions;
 
@@ -136,7 +136,7 @@ namespace hashdb {
 			}
 		}
 		
-		RAISE_INVALID_ARGUMENT_IF(! unusedOptions.empty(), "unrecognized option(s): %s", unusedOptions);
+		return unusedOptions;
 	}
 
 }; // namespace hashdb

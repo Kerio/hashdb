@@ -79,22 +79,25 @@ namespace tool {
 		const boost::string_ref dirOption = arguments.optionRef("--dir");
 		if (! dirOption.empty()) {
 			dir_ = dirOption.to_string();
-			if (! dirOption.ends_with("/") && ! dirOption.ends_with("\\")) {
-				dir_ += "/";
-			}
 		}
 
 		// Database name.
 		const boost::string_ref dbOption = arguments.optionRef("--db");
 		if (! dbOption.empty()) {
-			databaseName_ = dir_ + dbOption.to_string();
+			databasePath_ = dir_ / dbOption.to_string();
 		}
 		else {
-			databaseName_ += dir_ + "metadata";
+			databasePath_ += dir_ / "metadata";
 		}
 
 		log_ = arguments.hasOption("--log");
 		quiet_ = arguments.hasOption("--quiet");
+
+		// All options should be processed now.
+		const std::string unusedOptions = arguments.listUnusedOptions();
+		if (! unusedOptions.empty()) {
+			RAISE_TOOL_EXCEPTION(BadCommandOptionsReturnCode, "unrecognized option(s): %s", unusedOptions);
+		}
 	}
 
 	Database CommandOptions::openDatabaseReadOnly() const
@@ -106,7 +109,7 @@ namespace tool {
 			options.logger_.reset(new StdoutLogger);
 		}
 
-		db->open(databaseName_, options);
+		db->open(databasePath_, options);
 		return db;
 	}
 
@@ -114,8 +117,8 @@ namespace tool {
 	{
 		Database db = DatabaseFactory();
 
-		if (db->exists(databaseName_)) {
-			RAISE_TOOL_EXCEPTION(OutputDatabaseExistsReturnCode, "output database \"%s\" already exists", databaseName_);
+		if (db->exists(databasePath_)) {
+			RAISE_TOOL_EXCEPTION(OutputDatabaseExistsReturnCode, "output database \"%s\" already exists", databasePath_.string());
 		}
 
 		Options options = Options::readWriteSingleThreaded();
@@ -125,7 +128,7 @@ namespace tool {
 			options.logger_.reset(new StdoutLogger);
 		}
 
-		db->open(databaseName_, options);
+		db->open(databasePath_, options);
 		return db;
 	}
 
@@ -134,7 +137,7 @@ namespace tool {
 		std::ostringstream os;
 
 		// Tool settings.
-		os << "// Performing '" << command_->name() << "' command, " << (command_->isReadOnly()? "input" : "output") << " database is \"" << databaseName_ << "\"";
+		os << "// Performing '" << command_->name() << "' command, " << (command_->isReadOnly()? "input" : "output") << " database is \"" << databasePath_ << "\"";
 		if (log_) {
 			os << ", logging to stdout";
 		}

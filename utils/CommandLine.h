@@ -40,7 +40,7 @@ namespace hashdb {
 
 		size_type count();
 
-		void raiseIfUnused();
+		std::string listUnusedOptions() const;
 
 	private:
 		boost::string_ref findOption(boost::string_ref optionName);

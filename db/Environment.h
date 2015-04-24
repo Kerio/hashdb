@@ -42,7 +42,7 @@ namespace hashdb {
 		}													\
 	} while (false)
 
-#define HASHDB_LOG_DEBUG_DETAIL(fmt, ...)	// HASHDB_LOG_DEBUG(fmt, ## __VA_ARGS__)
+#define HASHDB_LOG_DEBUG_DETAIL(fmt, ...)	HASHDB_LOG_DEBUG(fmt, ## __VA_ARGS__)
 
 	class Environment : boost::noncopyable
 	{

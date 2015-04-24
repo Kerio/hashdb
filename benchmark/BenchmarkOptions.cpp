@@ -244,7 +244,9 @@ namespace benchmark {
 			arguments.optionUnsignedNumericValue(bdbHashFfactor_, "--hash-ffactor");
 		}
 
-		arguments.raiseIfUnused();
+		// All options should be processed now.
+		const std::string unusedOptions = arguments.listUnusedOptions();
+		RAISE_INVALID_ARGUMENT_IF(! unusedOptions.empty(), "unrecognized option(s): %s", unusedOptions);
 	}
 
 	std::string BenchmarkOptions::list() const
