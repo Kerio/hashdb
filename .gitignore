@@ -1,0 +1,8 @@
+# Linux output
+*.o
+*.a
+*.so
+
+# HashDB databases
+*.dbb
+*.dbo
