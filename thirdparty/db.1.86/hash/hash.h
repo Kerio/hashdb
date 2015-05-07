@@ -98,7 +98,7 @@ typedef struct htab {		/* Memory resident data structure */
 	int32_t bigkey_len;	/* Length of bigkey_buf */
 	u_int16_t  *split_buf;	/* Temporary buffer for splits */
 	CURSOR	*seq_cursor;	/* Cursor used for hash_seq */
-	int32_t	errno;		/* Error Number -- for DBM compatability */
+	int32_t	hash_errno;	/* Error Number -- for DBM compatability */
 	int32_t	new_file;	/* Indicates if fd is backing store or no */
 	int32_t	save_file;	/* Indicates whether we need to flush file at
 				 * exit */

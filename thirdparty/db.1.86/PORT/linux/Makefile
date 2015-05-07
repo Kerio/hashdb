@@ -11,18 +11,18 @@ OBJ4=	mpool.o
 OBJ5=	rec_close.o rec_delete.o rec_get.o rec_open.o rec_put.o rec_search.o \
 	rec_seq.o rec_utils.o
 
-MISC=	snprintf.o
+MISC=	mktemp.o
 
 ${LIBDB}: ${OBJ1} ${OBJ2} ${OBJ3} ${OBJ4} ${OBJ5} ${MISC}
 	rm -f $@
-	ar cq $@ ${OBJ1} ${OBJ2} ${OBJ3} ${OBJ4} ${OBJ5} ${MISC}
+	ar cq $@ ${OBJ1} ${OBJ2} ${OBJ3} ${OBJ4} ${OBJ5} ${MISC} 
 	ranlib $@
 
 clean:
 	rm -f ${LIBDB} ${OBJ1} ${OBJ2} ${OBJ3} ${OBJ4} ${OBJ5} ${MISC}
 
 OORG=	-O
-CL=	${CC} -c -D__DBINTERFACE_PRIVATE ${OORG} -I. -Iinclude
+CL=	${CC} -c -D__DBINTERFACE_PRIVATE ${OORG} -DNDEBUG -I. -Iinclude
 
 hash.o: ../../hash/hash.c
 	${CL} -I../../hash ../../hash/hash.c
@@ -94,8 +94,8 @@ rec_utils.o: ../../recno/rec_utils.c
 	${CL} -I../../recno ../../recno/rec_utils.c
 
 memmove.o:
-	${CC} -DMEMMOVE -c -O -I. -Iinclude clib/memmove.c
+	${CL} -DMEMMOVE -I. -Iinclude ../clib/memmove.c
 mktemp.o:
-	${CC} -c -O -I. -Iinclude clib/mktemp.c
+	${CL} -I. -Iinclude ../clib/mktemp.c
 snprintf.o:
-	${CC} -c -O -I. -Iinclude clib/snprintf.c
+	${CL} -I. -Iinclude ../clib/snprintf.c
