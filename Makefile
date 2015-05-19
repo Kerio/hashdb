@@ -1,6 +1,11 @@
-.PHONY: all clean
+.PHONY: all configure compile clean
 
-all:
+all: configure compile
+
+configure:
+	@if [ ! -f platform.mk ]; then echo "Run ./configure.sh first (use ./configure.sh --help to list options)" && false; fi
+
+compile:
 #	make -C utils
 #	make -C helpers
 #	make -C db
