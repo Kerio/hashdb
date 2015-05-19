@@ -1360,7 +1360,7 @@ adjust_cursor(hashp, ndx, chg_pgno, nxt_pgno, page_deleted)
 				}
 				if (cp->pagep) {
 					__put_page(hashp, cp->pagep, A_RAW, 0);
-					cp->pagep == NULL;
+					cp->pagep = NULL;
 				}
 			} else {
 				cp->pgndx--;
