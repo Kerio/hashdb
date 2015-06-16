@@ -6,3 +6,22 @@
 # HashDB databases
 *.dbb
 *.dbo
+
+# Visual Studio configuration
+*.sdf
+*.suo
+*.vcxproj.user
+build/ipch
+
+# Visual Studio output
+*.exe
+*.lib
+*.pdb
+*.idb
+*.obj
+*.tlog
+*.log
+*.lastbuildstate
+*.vcxprojResolveAssemblyReference.cache
+*.ipch
+*.ilk

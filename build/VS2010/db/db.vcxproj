@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\helpers\helpers.vcxproj">
+      <Project>{9eb18608-e26b-45fa-ae9d-4330482f25ef}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\utils\utils.vcxproj">
+      <Project>{4e8a21af-2c11-4f14-aa37-8e03614e6032}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\db\BitmapPage.h" />
+    <ClInclude Include="..\..\..\db\BucketDataPage.h" />
+    <ClInclude Include="..\..\..\db\BucketHeaderPage.h" />
+    <ClInclude Include="..\..\..\db\DatabaseImpl.h" />
+    <ClInclude Include="..\..\..\db\DataPage.h" />
+    <ClInclude Include="..\..\..\db\DataPageCursor.h" />
+    <ClInclude Include="..\..\..\db\Environment.h" />
+    <ClInclude Include="..\..\..\db\HeaderPage.h" />
+    <ClInclude Include="..\..\..\db\Interfaces.h" />
+    <ClInclude Include="..\..\..\db\IteratorImpl.h" />
+    <ClInclude Include="..\..\..\db\IteratorPosition.h" />
+    <ClInclude Include="..\..\..\db\LargeValuePage.h" />
+    <ClInclude Include="..\..\..\db\MetaData.h" />
+    <ClInclude Include="..\..\..\db\NullLockManager.h" />
+    <ClInclude Include="..\..\..\db\OpenDatabase.h" />
+    <ClInclude Include="..\..\..\db\OpenFiles.h" />
+    <ClInclude Include="..\..\..\db\OverflowDataPage.h" />
+    <ClInclude Include="..\..\..\db\OverflowFilePageAllocator.h" />
+    <ClInclude Include="..\..\..\db\OverflowHeaderPage.h" />
+    <ClInclude Include="..\..\..\db\Page.h" />
+    <ClInclude Include="..\..\..\db\PagedFile.h" />
+    <ClInclude Include="..\..\..\db\PageId.h" />
+    <ClInclude Include="..\..\..\db\RecordId.h" />
+    <ClInclude Include="..\..\..\db\SimplePageAllocator.h" />
+    <ClInclude Include="..\..\..\db\SingleThreadedPageAllocator.h" />
+    <ClInclude Include="..\..\..\db\stdafx.h" />
+    <ClInclude Include="..\..\..\db\Vector.h" />
+    <ClInclude Include="..\..\..\db\Version.h" />
+    <ClInclude Include="..\..\..\include\kerio\hashdb\BatchApi.h" />
+    <ClInclude Include="..\..\..\include\kerio\hashdb\Constants.h" />
+    <ClInclude Include="..\..\..\include\kerio\hashdb\Exception.h" />
+    <ClInclude Include="..\..\..\include\kerio\hashdb\HashDB.h" />
+    <ClInclude Include="..\..\..\include\kerio\hashdb\Iterator.h" />
+    <ClInclude Include="..\..\..\include\kerio\hashdb\Options.h" />
+    <ClInclude Include="..\..\..\include\kerio\hashdb\Statistics.h" />
+    <ClInclude Include="..\..\..\include\kerio\hashdb\StringOrReference.h" />
+    <ClInclude Include="..\..\..\include\kerio\hashdb\Types.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\db\BitmapPage.cpp" />
+    <ClCompile Include="..\..\..\db\BucketHeaderPage.cpp" />
+    <ClCompile Include="..\..\..\db\DatabaseImpl.cpp" />
+    <ClCompile Include="..\..\..\db\DataPage.cpp" />
+    <ClCompile Include="..\..\..\db\DataPageCursor.cpp" />
+    <ClCompile Include="..\..\..\db\Environment.cpp" />
+    <ClCompile Include="..\..\..\db\HeaderPage.cpp" />
+    <ClCompile Include="..\..\..\db\IteratorImpl.cpp" />
+    <ClCompile Include="..\..\..\db\LargeValuePage.cpp" />
+    <ClCompile Include="..\..\..\db\MetaData.cpp" />
+    <ClCompile Include="..\..\..\db\OpenDatabase.cpp" />
+    <ClCompile Include="..\..\..\db\OpenFiles.cpp" />
+    <ClCompile Include="..\..\..\db\Options.cpp" />
+    <ClCompile Include="..\..\..\db\OverflowFilePageAllocator.cpp" />
+    <ClCompile Include="..\..\..\db\Page.cpp" />
+    <ClCompile Include="..\..\..\db\PagedFile.cpp" />
+    <ClCompile Include="..\..\..\db\PageId.cpp" />
+    <ClCompile Include="..\..\..\db\RecordId.cpp" />
+    <ClCompile Include="..\..\..\db\SimplePageAllocator.cpp" />
+    <ClCompile Include="..\..\..\db\SingleThreadedPageAllocator.cpp" />
+    <ClCompile Include="..\..\..\db\Statistics.cpp" />
+    <ClCompile Include="..\..\..\db\stdafx.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3F879493-10A1-4592-B9BE-35F141CA8D65}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>db</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\PropSheet\hashdb_headers.props" />
+    <Import Project="..\PropSheet\root_headers.props" />
+    <Import Project="..\PropSheet\boost32.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\PropSheet\hashdb_headers.props" />
+    <Import Project="..\PropSheet\root_headers.props" />
+    <Import Project="..\PropSheet\boost64.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\PropSheet\hashdb_headers.props" />
+    <Import Project="..\PropSheet\root_headers.props" />
+    <Import Project="..\PropSheet\boost32.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\PropSheet\hashdb_headers.props" />
+    <Import Project="..\PropSheet\root_headers.props" />
+    <Import Project="..\PropSheet\boost64.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
