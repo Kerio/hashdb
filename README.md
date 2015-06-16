@@ -2,7 +2,7 @@
 
 This project is under construction.
 
-## Installing HashDB with Visual Studio 2010
+## Compiling HashDB with Visual Studio 2010
 
 ### Installing boost
 
@@ -34,7 +34,7 @@ Try to run the compiled "tool.exe".
 
 TODO: Build also the benchmark code.
 
-## Installing HashDB on Linux and MacOS X
+## Compiling HashDB on Linux and MacOS X
 
 ### Optional step: Installing the boost library
 

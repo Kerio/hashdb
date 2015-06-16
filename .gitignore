@@ -17,11 +17,9 @@ build/ipch
 *.exe
 *.lib
 *.pdb
-*.idb
 *.obj
-*.tlog
-*.log
-*.lastbuildstate
-*.vcxprojResolveAssemblyReference.cache
-*.ipch
-*.ilk
+Debug/
+Release/
+x64/
+x86/
+ipch/
