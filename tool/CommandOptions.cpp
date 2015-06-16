@@ -137,7 +137,7 @@ namespace tool {
 		std::ostringstream os;
 
 		// Tool settings.
-		os << "// Performing '" << command_->name() << "' command, " << (command_->isReadOnly()? "input" : "output") << " database is \"" << databasePath_ << "\"";
+		os << "// Performing '" << command_->name() << "' command, " << (command_->isReadOnly()? "input" : "output") << " database is \"" << databasePath_.string() << "\"";
 		if (log_) {
 			os << ", logging to stdout";
 		}

@@ -25,10 +25,26 @@
  * copyright holder.
  */
 #include "stdafx.h"
+#include <limits>
 #include "utils/StringUtils.h"
 #include "UtilsTest.h"
 
 using namespace kerio::hashdb;
+
+void UtilsTest::testToHex()
+{
+	uint32_t minUint = std::numeric_limits<uint32_t>::min();
+	std::string minStr = "0";
+	TS_ASSERT_EQUALS(minStr, toHex(minUint));
+
+	uint32_t maxUint = std::numeric_limits<uint32_t>::max();
+	std::string maxStr = "ffffffff";
+	TS_ASSERT_EQUALS(maxStr, toHex(maxUint));
+
+	uint32_t digUint = 0x89abcdef;
+	std::string digStr = "89abcdef";
+	TS_ASSERT_EQUALS(digStr, toHex(digUint));
+}
 
 void UtilsTest::testPrintJsonString()
 {

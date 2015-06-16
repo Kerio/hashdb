@@ -27,11 +27,23 @@
 
 // StringUtils.cpp - string utilities.
 #include "stdafx.h"
+#include <stdio.h>
 #include <kerio/hashdb/Constants.h>
 #include "StringUtils.h"
 
 namespace kerio {
 namespace hashdb {
+
+	std::string toHex(uint32_t num)
+	{
+		char buf[9];
+#if defined _WIN32
+		_snprintf(buf, sizeof(buf), "%x", num);
+#else
+		snprintf(buf, sizeof(buf), "%x", num);
+#endif
+		return buf;
+	}
 
 	std::string formatMessage(const char *fmt)
 	{

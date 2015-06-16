@@ -28,5 +28,6 @@
 
 class UtilsTest : public CxxTest::TestSuite {
 public:
+	void testToHex();
 	void testPrintJsonString();
 };

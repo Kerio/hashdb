@@ -43,12 +43,12 @@ void StringWriteBatchTest::testMultipleWrites()
 	
 	boost::scoped_ptr<StringWriteBatch> writeBatch(new StringWriteBatch);
 
-	TS_ASSERT_EQUALS(0, writeBatch->approxDataSize());
+	TS_ASSERT_EQUALS(0U, writeBatch->approxDataSize());
 
 	writeBatch->add(expectedKey1, expectedPartNum1, expectedValue1);
 	writeBatch->add(expectedKey2, expectedPartNum2, expectedValue2);
 
-	TS_ASSERT(writeBatch->approxDataSize() != 0);
+	TS_ASSERT(writeBatch->approxDataSize() != 0U);
 
 	TS_ASSERT_EQUALS(writeBatch->count(), 2U);
 

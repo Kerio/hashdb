@@ -36,7 +36,7 @@
 namespace kerio {
 namespace hashdb {
 	
-	typedef int partNum_t;		// Type for partNum, currently 0 .. 127.
+	typedef uint32_t partNum_t;	// Type for partNum, currently 0 .. 127.
 	typedef uint32_t size_type; // Type used for size.
 
 }; // namespace hashdb

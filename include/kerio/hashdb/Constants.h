@@ -34,10 +34,12 @@ namespace hashdb {
 
 	static const size_type MIN_PAGE_SIZE = 1024;
 	static const size_type MAX_PAGE_SIZE = 65536;
+
 	static const size_type MAX_KEY_SIZE = 127;
 	static const partNum_t MAX_PARTNUM = 127;
-	static const partNum_t ALL_PARTS = -1;
+
 	static const size_type SIZE_TYPE_MAX = 0xffffffff;
+	static const partNum_t ALL_PARTS = SIZE_TYPE_MAX;
 
 }; // namespace hashdb
 }; // namespace kerio

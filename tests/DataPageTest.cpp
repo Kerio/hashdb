@@ -246,7 +246,7 @@ void DataPageTest::testAddMultipleSmallRecords()
 		BucketDataPage bucketPage(allocator_.get(), pageSize);
 		TS_ASSERT_THROWS_NOTHING(initializeAndValidateBucketPage(bucketPage));
 
-		int recordsAdded = 0;
+		size_type recordsAdded = 0;
 		size_type endOfFreeArea = pageSize;
 
 		for (;;) {

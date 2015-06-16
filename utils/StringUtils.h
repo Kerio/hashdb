@@ -34,6 +34,8 @@
 namespace kerio {
 namespace hashdb {
 
+	std::string toHex(uint32_t num);
+
 	std::string formatMessage(const char *fmt);
 	
 	template <typename T1>
