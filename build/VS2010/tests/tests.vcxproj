@@ -20,16 +20,68 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\tests\BitmapPageTest.cpp" />
+    <ClCompile Include="..\..\..\tests\DatabaseTest.cpp" />
+    <ClCompile Include="..\..\..\tests\DataPageTest.cpp" />
+    <ClCompile Include="..\..\..\tests\DeleteBatchTest.cpp" />
+    <ClCompile Include="..\..\..\tests\HeaderPageTest.cpp" />
+    <ClCompile Include="..\..\..\tests\LargeValuePageTest.cpp" />
+    <ClCompile Include="..\..\..\tests\ManagementTest.cpp" />
+    <ClCompile Include="..\..\..\tests\MurmurHash3Test.cpp" />
+    <ClCompile Include="..\..\..\tests\PagedFileTest.cpp" />
+    <ClCompile Include="..\..\..\tests\PageIdTest.cpp" />
+    <ClCompile Include="..\..\..\tests\PageTest.cpp" />
+    <ClCompile Include="..\..\..\tests\SingleDeleteHelperTest.cpp" />
+    <ClCompile Include="..\..\..\tests\SingleReadHelperTest.cpp" />
+    <ClCompile Include="..\..\..\tests\SingleThreadedPageAllocatorTest.cpp" />
+    <ClCompile Include="..\..\..\tests\SingleWriteHelperTest.cpp" />
     <ClCompile Include="..\..\..\tests\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\..\tests\StringOrReferenceTest.cpp" />
+    <ClCompile Include="..\..\..\tests\StringReadBatchTest.cpp" />
+    <ClCompile Include="..\..\..\tests\StringWriteBatchTest.cpp" />
+    <ClCompile Include="..\..\..\tests\UtilsTest.cpp" />
+    <ClCompile Include="..\..\..\tests\VectorTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\tests\BitmapPageTest.h" />
+    <ClInclude Include="..\..\..\tests\DatabaseTest.h" />
+    <ClInclude Include="..\..\..\tests\DataPageTest.h" />
+    <ClInclude Include="..\..\..\tests\DeleteBatchTest.h" />
+    <ClInclude Include="..\..\..\tests\HeaderPageTest.h" />
+    <ClInclude Include="..\..\..\tests\LargeValuePageTest.h" />
+    <ClInclude Include="..\..\..\tests\ManagementTest.h" />
+    <ClInclude Include="..\..\..\tests\MurmurHash3Test.h" />
+    <ClInclude Include="..\..\..\tests\PagedFileTest.h" />
+    <ClInclude Include="..\..\..\tests\PageIdTest.h" />
+    <ClInclude Include="..\..\..\tests\PageTest.h" />
+    <ClInclude Include="..\..\..\tests\SingleDeleteHelperTest.h" />
+    <ClInclude Include="..\..\..\tests\SingleReadHelperTest.h" />
+    <ClInclude Include="..\..\..\tests\SingleThreadedPageAllocatorTest.h" />
+    <ClInclude Include="..\..\..\tests\SingleWriteHelperTest.h" />
     <ClInclude Include="..\..\..\tests\stdafx.h" />
+    <ClInclude Include="..\..\..\tests\StringOrReferenceTest.h" />
+    <ClInclude Include="..\..\..\tests\StringReadBatchTest.h" />
+    <ClInclude Include="..\..\..\tests\StringWriteBatchTest.h" />
+    <ClInclude Include="..\..\..\tests\UtilsTest.h" />
+    <ClInclude Include="..\..\..\tests\VectorTest.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\db\db.vcxproj">
+      <Project>{3f879493-10a1-4592-b9be-35f141ca8d65}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\helpers\helpers.vcxproj">
+      <Project>{9eb18608-e26b-45fa-ae9d-4330482f25ef}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\testUtils\testUtils.vcxproj">
+      <Project>{5223e0f7-88ae-426b-a73b-76611df22e18}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\utils\utils.vcxproj">
+      <Project>{4e8a21af-2c11-4f14-aa37-8e03614e6032}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4073C4B4-043F-411F-BAC8-61A00D3583F9}</ProjectGuid>
@@ -68,6 +120,7 @@
     <Import Project="..\PropSheet\boost32.props" />
     <Import Project="..\PropSheet\root_headers.props" />
     <Import Project="..\PropSheet\hashdb_headers.props" />
+    <Import Project="..\PropSheet\hashdbHelpers_headers.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -75,6 +128,7 @@
     <Import Project="..\PropSheet\boost64.props" />
     <Import Project="..\PropSheet\root_headers.props" />
     <Import Project="..\PropSheet\hashdb_headers.props" />
+    <Import Project="..\PropSheet\hashdbHelpers_headers.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -82,6 +136,7 @@
     <Import Project="..\PropSheet\boost32.props" />
     <Import Project="..\PropSheet\root_headers.props" />
     <Import Project="..\PropSheet\hashdb_headers.props" />
+    <Import Project="..\PropSheet\hashdbHelpers_headers.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -89,6 +144,7 @@
     <Import Project="..\PropSheet\boost64.props" />
     <Import Project="..\PropSheet\root_headers.props" />
     <Import Project="..\PropSheet\hashdb_headers.props" />
+    <Import Project="..\PropSheet\hashdbHelpers_headers.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
