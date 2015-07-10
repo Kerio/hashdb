@@ -23,3 +23,7 @@ Release/
 x64/
 x86/
 ipch/
+
+# Other
+__pycache__/
+build/generated/runner.cpp

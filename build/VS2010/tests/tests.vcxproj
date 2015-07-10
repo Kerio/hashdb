@@ -45,6 +45,9 @@
     <ClCompile Include="..\..\..\tests\StringWriteBatchTest.cpp" />
     <ClCompile Include="..\..\..\tests\UtilsTest.cpp" />
     <ClCompile Include="..\..\..\tests\VectorTest.cpp" />
+    <ClCompile Include="..\..\generated\runner.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\tests\BitmapPageTest.h" />
@@ -170,6 +173,17 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>if not exist ..\..\..\build\generated mkdir ..\..\..\build\generated
+python ..\..\..\thirdparty\cxxtest\bin\cxxtestgen --runner=ParenPrinter --include="..\..\tests\stdafx.h" --abort-on-fail -o ..\..\..\build\generated\runner.cpp ..\..\..\tests\*Test.h</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Create runner.cpp</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>$(TargetPath)</Command>
+      <Message>Running unit tests</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -182,6 +196,17 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>if not exist ..\..\..\build\generated mkdir ..\..\..\build\generated
+python ..\..\..\thirdparty\cxxtest\bin\cxxtestgen --runner=ParenPrinter --include="..\..\tests\stdafx.h" --abort-on-fail -o ..\..\..\build\generated\runner.cpp ..\..\..\tests\*Test.h</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Create runner.cpp</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>$(TargetPath)</Command>
+      <Message>Running unit tests</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -198,6 +223,17 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PreBuildEvent>
+      <Command>if not exist ..\..\..\build\generated mkdir ..\..\..\build\generated
+python ..\..\..\thirdparty\cxxtest\bin\cxxtestgen --runner=ParenPrinter --include="..\..\tests\stdafx.h" --abort-on-fail -o ..\..\..\build\generated\runner.cpp ..\..\..\tests\*Test.h</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Create runner.cpp</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>$(TargetPath)</Command>
+      <Message>Running unit tests</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -214,6 +250,17 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PreBuildEvent>
+      <Command>if not exist ..\..\..\build\generated mkdir ..\..\..\build\generated
+python ..\..\..\thirdparty\cxxtest\bin\cxxtestgen --runner=ParenPrinter --include="..\..\tests\stdafx.h" --abort-on-fail -o ..\..\..\build\generated\runner.cpp ..\..\..\tests\*Test.h</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Create runner.cpp</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>$(TargetPath)</Command>
+      <Message>Running unit tests</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

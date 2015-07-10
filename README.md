@@ -1,4 +1,4 @@
-# hashdb
+# hashdb - a fast embeddable key/value database based on linear hashing
 
 This project is under construction.
 
@@ -25,6 +25,13 @@ The address-model should be either 32 or 64 depending on your compilation target
 * Expand the "tool" project until you find a property sheet called "boost32" or "boost64" (depending on the chosen address model), and double-click it.
 * Edit C/C++ / General / Additional Include Directories, change the path to boost includes.
 * Edit Linker / General / Additional Library Directories, change the to boost libraries.
+
+### Optional step: Installing Python
+
+A Python installation is needed only for running the unit tests. 
+If you do not wish to run the unit tests, you can exclude the "tests" project from the build configuration.
+
+Otherwise install the latest Python version from https://www.python.org/downloads/ .
 
 ### Build and test the project
 
@@ -53,4 +60,3 @@ To compile HashDB with boost compiled from sources, do the following:
 * Run `./configure.sh` in the root of the HashDB project
 
 TODO
-
