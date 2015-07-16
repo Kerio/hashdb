@@ -48,6 +48,9 @@ static char sccsid[] = "@(#)bt_open.c	8.11 (Berkeley) 11/2/95";
 
 #include <sys/param.h>
 #include <sys/stat.h>
+#ifdef KERIO_WIN32
+#include <sys/types.h>
+#endif
 
 #include <errno.h>
 #include <fcntl.h>
@@ -69,6 +72,8 @@ static char sccsid[] = "@(#)bt_open.c	8.11 (Berkeley) 11/2/95";
 static int byteorder __P((void));
 static int nroot __P((BTREE *));
 static int tmp __P((void));
+
+extern int mkstemp(char *path);
 
 /*
  * __BT_OPEN -- Open a btree.
@@ -189,6 +194,9 @@ __bt_open(fname, flags, mode, openinfo, dflags)
 	 * If no file name was supplied, this is an in-memory btree and we
 	 * open a backing temporary file.  Otherwise, it's a disk-based tree.
 	 */
+#ifdef KERIO_WIN32
+		flags = flags | O_BINARY;
+#endif
 	if (fname) {
 		switch (flags & O_ACCMODE) {
 		case O_RDONLY:
@@ -212,8 +220,10 @@ __bt_open(fname, flags, mode, openinfo, dflags)
 		F_SET(t, B_INMEM);
 	}
 
+#ifndef KERIO_WIN32
 	if (fcntl(t->bt_fd, F_SETFD, 1) == -1)
 		goto err;
+#endif
 
 	if (fstat(t->bt_fd, &sb))
 		goto err;
@@ -259,7 +269,11 @@ __bt_open(fname, flags, mode, openinfo, dflags)
 		 * Don't overflow the page offset type.
 		 */
 		if (b.psize == 0) {
+#ifdef KERIO_WIN32
+			b.psize = KERIO_WIN_BLKSIZE;
+#else
 			b.psize = sb.st_blksize;
+#endif
 			if (b.psize < MINPSIZE)
 				b.psize = MINPSIZE;
 			if (b.psize > MAX_PAGE_OFFSET + 1)
@@ -393,20 +407,30 @@ nroot(t)
 static int
 tmp()
 {
+#ifndef KERIO_WIN32
 	sigset_t set, oset;
+#endif
 	int fd;
 	char *envtmp;
 	char path[MAXPATHLEN];
 
+#ifdef KERIO_WIN32
+	envtmp = getenv("TMP");
+#else
 	envtmp = getenv("TMPDIR");
+#endif
 	(void)snprintf(path,
 	    sizeof(path), "%s/bt.XXXXXX", envtmp ? envtmp : "/tmp");
 
+#ifndef KERIO_WIN32
 	(void)sigfillset(&set);
 	(void)sigprocmask(SIG_BLOCK, &set, &oset);
+#endif
 	if ((fd = mkstemp(path)) != -1)
 		(void)unlink(path);
+#ifndef KERIO_WIN32
 	(void)sigprocmask(SIG_SETMASK, &oset, NULL);
+#endif
 	return(fd);
 }
 

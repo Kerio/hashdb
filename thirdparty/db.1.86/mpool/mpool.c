@@ -336,7 +336,11 @@ mpool_sync(mp)
 			return (RET_ERROR);
 
 	/* Sync the file descriptor. */
+#ifdef KERIO_WIN32
+	return RET_SUCCESS;
+#else
 	return (fsync(mp->fd) ? RET_ERROR : RET_SUCCESS);
+#endif
 }
 
 /*

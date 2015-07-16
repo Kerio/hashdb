@@ -36,8 +36,10 @@ static char sccsid[] = "@(#)rec_close.c	8.6 (Berkeley) 8/18/94";
 #endif /* LIBC_SCCS and not lint */
 
 #include <sys/types.h>
+#ifndef KERIO_WIN32
 #include <sys/uio.h>
 #include <sys/mman.h>
+#endif
 
 #include <errno.h>
 #include <limits.h>
@@ -46,6 +48,7 @@ static char sccsid[] = "@(#)rec_close.c	8.6 (Berkeley) 8/18/94";
 
 #include <db.h>
 #include "recno.h"
+#include "compat.h"
 
 /*
  * __REC_CLOSE -- Close a recno tree.
@@ -76,9 +79,10 @@ __rec_close(dbp)
 
 	/* Committed to closing. */
 	status = RET_SUCCESS;
+#ifdef HAS_MMAP
 	if (F_ISSET(t, R_MEMMAPPED) && munmap(t->bt_smap, t->bt_msize))
 		status = RET_ERROR;
-
+#endif
 	if (!F_ISSET(t, R_INMEM)) {
 		if (F_ISSET(t, R_CLOSEFP)) {
 			if (fclose(t->bt_rfp))
@@ -109,7 +113,11 @@ __rec_sync(dbp, flags)
 	const DB *dbp;
 	u_int flags;
 {
+#ifdef HAS_WRITEV
 	struct iovec iov[2];
+#endif
+	int l1;
+
 	BTREE *t;
 	DBT data, key;
 	off_t off;
@@ -157,14 +165,21 @@ __rec_sync(dbp, flags)
 			status = (dbp->seq)(dbp, &key, &data, R_NEXT);
 		}
 	} else {
+#ifdef HAS_WRITEV
 		iov[1].iov_base = &t->bt_bval;
 		iov[1].iov_len = 1;
-
+#endif
 		status = (dbp->seq)(dbp, &key, &data, R_FIRST);
 		while (status == RET_SUCCESS) {
+#ifndef HAS_WRITEV
+		  l1 = write(t->bt_rfd, data.data, data.size);
+		  if (l1 >= 0) l1 += write(t->bt_rfd, &t->bt_bval, 1);
+#else
 			iov[0].iov_base = data.data;
 			iov[0].iov_len = data.size;
-			if (writev(t->bt_rfd, iov, 2) != data.size + 1)
+			l1 = writev(t->bt_rfd, iov, 2);
+#endif
+			if (l1 != data.size + 1)
 				return (RET_ERROR);
 			status = (dbp->seq)(dbp, &key, &data, R_NEXT);
 		}

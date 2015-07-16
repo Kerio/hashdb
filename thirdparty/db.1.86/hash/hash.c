@@ -78,6 +78,8 @@ static void swap_header_copy __P((HASHHDR *, HASHHDR *));
 static u_int32_t hget_header __P((HTAB *, u_int32_t));
 static void hput_header __P((HTAB *));
 
+extern char *b_mktemp __P((char *));
+
 #define RETURN_ERROR(ERR, LOC)	{ save_errno = ERR; goto LOC; }
 
 /* Return values */
@@ -104,6 +106,7 @@ __hash_open(file, flags, mode, info, dflags)
 	DBT mpool_key;
 	HTAB *hashp;
 	int32_t bpages, csize, new_table, save_errno, specified_file;
+	const char *envtmp;
 
 	if ((flags & O_ACCMODE) == O_WRONLY) {
 		errno = EINVAL;
@@ -115,10 +118,20 @@ __hash_open(file, flags, mode, info, dflags)
 
 	/* set this now, before file goes away... */
 	specified_file = (file != NULL);
+	hashp->fname[0] = '\0';
 	if (!file) {
-		file = tmpnam(NULL);
+#ifdef KERIO_WIN32
+		envtmp = getenv("TMP");
+#else
+		envtmp = getenv("TMPDIR");
+#endif
+		(void)snprintf(hashp->fname,
+			sizeof(hashp->fname), "%s/bt.XXXXXX", envtmp ? envtmp : "/tmp");
+		
+		file = b_mktemp(hashp->fname);
+		// file = tmpnam(NULL);
 		/* store the file name so that we can unlink it later */
-		hashp->fname = (char *)file;
+		// hashp->fname = (char *)file;
 #ifdef DEBUG
 		fprintf(stderr, "Using file name %s.\n", file);
 #endif
@@ -140,9 +153,14 @@ __hash_open(file, flags, mode, info, dflags)
 		new_table = 1;
 	}
 	if (file) {
+#ifdef KERIO_WIN32
+	  flags = flags | O_BINARY;
+#endif
 		if ((hashp->fp = open(file, flags, mode)) == -1)
 			RETURN_ERROR(errno, error0);
+#ifndef KERIO_WIN32
 		(void)fcntl(hashp->fp, F_SETFD, 1);
+#endif
 	}
 
 	/* Process arguments to set up hash table header. */
@@ -327,7 +345,11 @@ init_hash(hashp, file, info)
 	if (file != NULL) {
 		if (stat(file, &statbuf))
 			return (NULL);
+#ifdef KERIO_WIN32
+		hashp->hdr.bsize = KERIO_WIN_BLKSIZE;
+#else
 		hashp->hdr.bsize = statbuf.st_blksize;
+#endif
 		hashp->hdr.bshift = __log2(hashp->hdr.bsize);
 	}
 	if (info) {
@@ -365,7 +387,6 @@ init_htab(hashp, nelem)
 	int32_t nelem;
 {
 	int32_t l2, nbuckets;
-	pgno_t i;
 
 	/*
 	 * Divide number of elements by the fill factor and determine a
@@ -525,7 +546,8 @@ hdestroy(hashp)
 	 * Note that the new version of mpool should support temporary
 	 * files within mpool itself.
 	 */
-	if (hashp->fname && !hashp->save_file) {
+	if (hashp->fname[0] && !hashp->save_file) {
+		hashp->fname[sizeof(hashp->fname)-1] = '\0';
 #ifdef DEBUG
 		fprintf(stderr, "Unlinking file %s.\n", hashp->fname);
 #endif
@@ -533,7 +555,7 @@ hdestroy(hashp)
 		chmod(hashp->fname, 0700);
 		unlink(hashp->fname);
 		/* destroy the temporary name */
-		tmpnam(NULL);
+		// tmpnam(NULL);
 	}
 	free(hashp);
 

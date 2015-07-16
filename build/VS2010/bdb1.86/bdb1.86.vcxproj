@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\btree\bt_close.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\btree\bt_conv.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\btree\bt_debug.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\btree\bt_delete.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\btree\bt_get.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\btree\bt_open.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\btree\bt_overflow.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\btree\bt_page.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\btree\bt_put.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\btree\bt_search.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\btree\bt_seq.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\btree\bt_split.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\btree\bt_utils.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\db\db.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\hash\hash.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\hash\hash_bigkey.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\hash\hash_buf.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\hash\hash_func.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\hash\hash_log2.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\hash\hash_page.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\hash\hsearch.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\hash\ndbm.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\mpool\mpool.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\PORT\clib\mktemp.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\recno\rec_close.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\recno\rec_delete.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\recno\rec_get.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\recno\rec_open.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\recno\rec_put.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\recno\rec_search.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\recno\rec_seq.c" />
+    <ClCompile Include="..\..\..\thirdparty\db.1.86\recno\rec_utils.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\btree\btree.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\btree\extern.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\hash\extern.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\hash\hash.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\hash\page.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\hash\search.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\include\db.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\include\mpool.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\PORT\win32\include\cdefs.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\PORT\win32\include\compat.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\PORT\win32\include\db.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\PORT\win32\include\getopt.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\PORT\win32\include\mpool.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\PORT\win32\include\my_getopt.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\PORT\win32\include\ndbm.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\PORT\win32\include\queue.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\PORT\win32\include\sys\bdb_cdefs.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\PORT\win32\include\sys\bdb_file.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\PORT\win32\include\sys\mman.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\PORT\win32\include\sys\param.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\PORT\win32\include\unistd.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\recno\extern.h" />
+    <ClInclude Include="..\..\..\thirdparty\db.1.86\recno\recno.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2225F647-8EEE-4C0A-9E50-9252CA940705}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>bdb186</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\PropSheet\bdb1_86_headers.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\PropSheet\bdb1_86_headers.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\PropSheet\bdb1_86_headers.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\PropSheet\bdb1_86_headers.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;KERIO_WIN32;KERIO_WIN_BLKSIZE=1024;__DBINTERFACE_PRIVATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\thirdparty\db.1.86\PORT\win32\include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4244;4267;4996;4018;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;KERIO_WIN32;KERIO_WIN_BLKSIZE=1024;__DBINTERFACE_PRIVATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\thirdparty\db.1.86\PORT\win32\include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4244;4267;4996;4018;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;KERIO_WIN32;KERIO_WIN_BLKSIZE=1024;__DBINTERFACE_PRIVATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\thirdparty\db.1.86\PORT\win32\include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4244;4267;4996;4018;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;KERIO_WIN32;KERIO_WIN_BLKSIZE=1024;__DBINTERFACE_PRIVATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\thirdparty\db.1.86\PORT\win32\include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4244;4267;4996;4018;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -35,6 +35,8 @@
 static char sccsid[] = "@(#)mktemp.c	8.1 (Berkeley) 6/4/93";
 #endif /* LIBC_SCCS and not lint */
 
+#define S_ISDIR(mode) (((mode) & _S_IFMT) == _S_IFDIR)
+
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -43,25 +45,36 @@ static char sccsid[] = "@(#)mktemp.c	8.1 (Berkeley) 6/4/93";
 #include <ctype.h>
 #include <unistd.h>
 
+#ifdef KERIO_WIN32
+#include <process.h>
+#include <io.h>
+
+#define u_int unsigned int
+
+#endif
+
 static int _gettemp();
 
-int mkstemp(path)
+#ifdef KERIO_WIN32
+
+mkstemp(path)
 	char *path;
 {
 	int fd;
 
 	return (_gettemp(path, &fd) ? fd : -1);
 }
+#endif
 
 char *
-mktemp(path)
+b_mktemp(path)
 	char *path;
 {
 	return(_gettemp(path, (int *)NULL) ? path : (char *)NULL);
 }
 
 static
-int _gettemp(path, doopen)
+_gettemp(path, doopen)
 	char *path;
 	register int *doopen;
 {

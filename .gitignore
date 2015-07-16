@@ -7,9 +7,14 @@
 *.dbb
 *.dbo
 
+# BDB 1.86 databases for benchmarking
+db_btree
+db_hash
+
 # Visual Studio configuration
 *.sdf
 *.suo
+*.opensdf
 *.vcxproj.user
 build/ipch
 
