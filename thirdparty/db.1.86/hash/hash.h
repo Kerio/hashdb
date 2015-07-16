@@ -91,7 +91,7 @@ typedef struct htab {		/* Memory resident data structure */
 	u_int32_t (*hash) __P((const void *, size_t)); /* Hash Function */
 	int32_t	flags;		/* Flag values */
 	int32_t	fp;		/* File pointer */
-	char *fname;        	/* File path */
+	char fname[260];    /* File path */
 	char *bigdata_buf;	/* Temporary Buffer for BIG data */
 	int32_t bigdata_len;	/* Length of bigdata_buf */
 	char *bigkey_buf;	/* Temporary Buffer for BIG keys */

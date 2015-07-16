@@ -312,7 +312,6 @@ __delpair(hashp, cursorp, item_info)
 	int16_t delta, len, next_key;
 	int32_t n;
 	u_int8_t *src, *dest;
-	pgno_t move_pgno;
 	int page_deleted;
 
 	ndx = cursorp->pgndx;
