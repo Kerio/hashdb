@@ -1,10 +1,18 @@
 hashdb - a fast embeddable key/value database
 =============================================
 
-* embeddable key/value database library written in C++ with a C++ API
-* provides fast storage and retrieval - the database is based on the [linear hashing algorithm](https://en.wikipedia.org/wiki/Linear_hashing)
+HashDB is a key/value database library specifically designed for fast simultaneous operation of tens to hundreds of instances in a memory-constrained environment.
+
+HashDB provides the following:
+
+* an embeddable key/value database library written in C++ with a modern C++ API
+* fast storage and retrieval - the database is based on the [linear hashing algorithm](https://en.wikipedia.org/wiki/Linear_hashing)
 * cross platform - the database has been thoroughly tested on Windows, Linux and MacOS X
-* open source with a very permissive MIT-like [open source license](LICENSE.txt)
+* open source with a very permissive [MIT-like open source license](LICENSE.txt)
+* code includes an extensive testsuite and a modular benchmarking application
+
+The HashDB database currently does not provide many of the features that might be expected in a traditional high-level database such as client/server access,
+a query language, transactions or multi-threaded access to a single database instance.
 
 Status: Windows build is now complete, but new build scripts for POSIX platforms are not yet finished.
 
@@ -30,7 +38,7 @@ int main(int argc, char* argv)
         db->store("key2", 0, "value2");
         db->store("key2", 1, "value3"); // "value2" and "value3" gets stored to the same bucket.
 
-        // List the values.
+        // Use an iterator to list all the values.
         for (Iterator it = db->newIterator(); it->isValid(); it->next()) {
             std::cout << "key=" << it->key() << ", "
                       << "part=" << it->partNum() << ", "
@@ -46,6 +54,10 @@ int main(int argc, char* argv)
 
 Compiling HashDB with Visual Studio 2010
 ----------------------------------------
+
+HashDB can be compiled with Visual Studio 2010 or newer. If you need to compile HashDB with a newer version of Visual Studio, 
+just let Visual Studio to perform the automatic upgrade of HashDB project files and set the appropriate toolset when compiling the 
+boost libraries.
 
 ### 1. Installing boost
 
