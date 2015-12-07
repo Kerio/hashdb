@@ -34,18 +34,6 @@ namespace hashdb {
 
 	class SingleThreadedPageAllocatorCache;
 
-	struct SingleThreadedPageAllocatorCacheEntry {
-		SingleThreadedPageAllocatorCacheEntry();
-		SingleThreadedPageAllocatorCacheEntry(IPageAllocator::value_type* pageMemory, IPageAllocator::counter_type* counterMemory);
-
-		bool empty();
-		void allocate(size_t pageSize);
-		void free();
-
-		IPageAllocator::value_type* pageMemory_;
-		IPageAllocator::counter_type* counterMemory_;
-	};
-
 	class SingleThreadedPageAllocator : public IPageAllocator, boost::noncopyable
 	{
 	public:

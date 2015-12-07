@@ -38,44 +38,58 @@ namespace hashdb {
 	//----------------------------------------------------------------------------
 	// Cache entry.
 
-	SingleThreadedPageAllocatorCacheEntry::SingleThreadedPageAllocatorCacheEntry() 
-		: pageMemory_(NULL)
-		, counterMemory_(NULL)
-	{
+	struct SingleThreadedPageAllocatorCacheEntry {
 
-	}
+		SingleThreadedPageAllocatorCacheEntry()
+			: pageMemory_(NULL)
+			, counterMemory_(NULL)
+		{ }
 
-	SingleThreadedPageAllocatorCacheEntry::SingleThreadedPageAllocatorCacheEntry(IPageAllocator::value_type* pageMemory, IPageAllocator::counter_type* counterMemory)
-		: pageMemory_(pageMemory)
-		, counterMemory_(counterMemory)
-	{
+		SingleThreadedPageAllocatorCacheEntry(IPageAllocator::value_type* pageMemory, IPageAllocator::counter_type* counterMemory)
+			: pageMemory_(pageMemory)
+			, counterMemory_(counterMemory)
+		{ }
 
-	}
-
-	bool SingleThreadedPageAllocatorCacheEntry::empty()
-	{
-		return pageMemory_ == NULL;
-	}
-
-	void SingleThreadedPageAllocatorCacheEntry::allocate(size_t pageSize)
-	{
-		pageMemory_ = static_cast<IPageAllocator::value_type*>(malloc(pageSize));
-		counterMemory_ = static_cast<IPageAllocator::counter_type*>(malloc(sizeof(IPageAllocator::counter_type)));
-
-		if (pageMemory_ == NULL || counterMemory_ == NULL) {
-			free();
-			RAISE_INTERNAL_ERROR("Out of memory");
+		bool empty() const
+		{
+			return pageMemory_ == NULL;
 		}
-	}
 
-	void SingleThreadedPageAllocatorCacheEntry::free()
-	{
-		::free(pageMemory_);
-		pageMemory_ = NULL;
+		void allocate(size_t pageSize)
+		{
+			pageMemory_ = static_cast<IPageAllocator::value_type*>(malloc(pageSize));
+			counterMemory_ = static_cast<IPageAllocator::counter_type*>(malloc(sizeof(IPageAllocator::counter_type)));
 
-		::free(counterMemory_);
-		counterMemory_ = NULL;
-	}
+			if (pageMemory_ == NULL || counterMemory_ == NULL) {
+				free();
+				RAISE_INTERNAL_ERROR("Out of memory");
+			}
+		}
+
+		void free()
+		{
+			::free(pageMemory_);
+			::free(counterMemory_);
+
+			pageMemory_ = NULL;
+			counterMemory_ = NULL;
+		}
+
+		void moveTo(SingleThreadedPageAllocatorCacheEntry& out)
+		{
+			HASHDB_ASSERT(out.pageMemory_ == NULL);
+			HASHDB_ASSERT(out.counterMemory_ == NULL);
+
+			out.pageMemory_ = pageMemory_;
+			out.counterMemory_ = counterMemory_;
+
+			pageMemory_ = NULL;
+			counterMemory_ = NULL;
+		}
+
+		IPageAllocator::value_type* pageMemory_;
+		IPageAllocator::counter_type* counterMemory_;
+	};
 
 	//----------------------------------------------------------------------------
 	// Cache.
@@ -88,6 +102,11 @@ namespace hashdb {
 			, maxEntries_(maximumHeldPages)
 		{
 			cache_.resize(maximumHeldPages);
+		}
+
+		~SingleThreadedPageAllocatorCache()
+		{
+			clear();
 		}
 
 		bool push(SingleThreadedPageAllocatorCacheEntry entry)
@@ -106,7 +125,7 @@ namespace hashdb {
 			SingleThreadedPageAllocatorCacheEntry entry;
 
 			if (entries_ > 0) {
-				entry = cache_[--entries_];
+				cache_[--entries_].moveTo(entry);
 			}
 
 			return entry;
@@ -122,8 +141,16 @@ namespace hashdb {
 			return entries_;
 		}
 
+		void clear()
+		{
+			while (! empty()) {
+				SingleThreadedPageAllocatorCacheEntry entry = pop();
+				entry.free();
+			}
+		}
+
 	private:
-		Vector<SingleThreadedPageAllocatorCacheEntry, VECTOR_DEFAULT_STATIC_CAPACITY> cache_;
+		Vector<SingleThreadedPageAllocatorCacheEntry> cache_;
 		size_type entries_;
 		size_type maxEntries_;
 	};
@@ -178,12 +205,12 @@ namespace hashdb {
 
 	void SingleThreadedPageAllocator::freeSomeMemory()
 	{
-		if (cache_ && ! cache_->empty()) {
-			init(pageSize_);
+		if (cache_) {
+			cache_->clear();
 		}
 	}
 
-	kerio::hashdb::size_type SingleThreadedPageAllocator::heldPages()
+	size_type SingleThreadedPageAllocator::heldPages()
 	{
 		size_type pages = 0;
 
