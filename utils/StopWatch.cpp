@@ -37,12 +37,11 @@
 #endif
 
 #include <kerio/hashdb/Exception.h>
-#include "utils/ExceptionCreator.h"
+#include "ExceptionCreator.h"
 #include "StopWatch.h"
 
 namespace kerio {
 namespace hashdb {
-namespace benchmark {
 
 #if defined _WIN32
 
@@ -153,6 +152,5 @@ namespace benchmark {
 		return pimpl_->seconds();
 	}
 
-}; // namespace benchmark
 }; // namespace hashdb
 }; // namespace kerio

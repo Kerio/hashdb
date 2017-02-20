@@ -12,6 +12,7 @@
 
 #include <cstdlib>
 #include <string>
+#include <boost/scoped_ptr.hpp>
 #include <boost/utility/string_ref.hpp>
 
 #if defined(_WIN32)

@@ -28,7 +28,6 @@
 
 namespace kerio {
 namespace hashdb {
-namespace benchmark {
 
 	class StopWatch {
 	public:
@@ -40,6 +39,5 @@ namespace benchmark {
 		boost::scoped_ptr<class StopWatchImpl> pimpl_;
 	};
 
-}; // namespace benchmark
 }; // namespace hashdb
 }; // namespace kerio

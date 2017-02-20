@@ -31,7 +31,6 @@
     <ClInclude Include="..\..\..\benchmark\Runner.h" />
     <ClInclude Include="..\..\..\benchmark\Sequence.h" />
     <ClInclude Include="..\..\..\benchmark\stdafx.h" />
-    <ClInclude Include="..\..\..\benchmark\StopWatch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\benchmark\BdbWrapper.cpp" />
@@ -50,7 +49,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\benchmark\StopWatch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\bdb1.86\bdb1.86.vcxproj">

@@ -30,9 +30,9 @@
 #include <kerio/hashdbHelpers/StringWriteBatch.h>
 #include <kerio/hashdbHelpers/StringReadBatch.h>
 #include "utils/ExceptionCreator.h"
+#include "utils/StopWatch.h"
 #include "BenchmarkException.h"
 #include "HashdbWrapper.h"
-#include "StopWatch.h"
 #include "ProgressReporter.h"
 #include "BenchmarkOptions.h"
 #include "Benchmark.h"

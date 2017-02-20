@@ -28,7 +28,7 @@
 #include <iostream>
 #include <kerio/hashdb/Exception.h>
 #include "utils/ExceptionCreator.h"
-#include "StopWatch.h"
+#include "utils/StopWatch.h"
 #include "BenchmarkOptions.h"
 #include "Benchmark.h"
 
