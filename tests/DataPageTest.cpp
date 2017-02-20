@@ -595,7 +595,7 @@ namespace {
 
 		TS_ASSERT(cursor.find(recordId));
 		TS_ASSERT_EQUALS("a", cursor.key());
-		TS_ASSERT_EQUALS(22, cursor.partNum());
+		TS_ASSERT_EQUALS(22u, cursor.partNum());
 		TS_ASSERT_EQUALS(value, cursor.inlineValue());
 
 		bucketPage.deleteSingleRecord(cursor);
@@ -714,7 +714,7 @@ namespace {
 		TS_ASSERT(cursor.isValid());
 		TS_ASSERT(cursor.isInlineValue());
 		TS_ASSERT_EQUALS(key, cursor.key());
-		TS_ASSERT_EQUALS(0, cursor.partNum());
+		TS_ASSERT_EQUALS(0U, cursor.partNum());
 		TS_ASSERT_EQUALS(firstValue, cursor.inlineValue());
 
 		const boost::string_ref firstRecord = cursor.inlineRecord();
@@ -725,7 +725,7 @@ namespace {
 		TS_ASSERT(cursor.isValid());
 		TS_ASSERT(! cursor.isInlineValue());
 		TS_ASSERT_EQUALS(key, cursor.key());
-		TS_ASSERT_EQUALS(1, cursor.partNum());
+		TS_ASSERT_EQUALS(1U, cursor.partNum());
 		TS_ASSERT_EQUALS(secondValueSize, cursor.largeValueSize());
 		TS_ASSERT_EQUALS(secondValuePage, cursor.firstLargeValuePageId());
 
@@ -787,7 +787,7 @@ void DataPageTest::testAddInlineRecordData()
 		TS_ASSERT(cursor.isValid());
 		TS_ASSERT(cursor.isInlineValue());
 		TS_ASSERT_EQUALS(key, cursor.key());
-		TS_ASSERT_EQUALS(0, cursor.partNum());
+		TS_ASSERT_EQUALS(0U, cursor.partNum());
 		TS_ASSERT_EQUALS(firstValue, cursor.inlineValue());
 
 		const boost::string_ref firstRecord = cursor.inlineRecord();
@@ -801,7 +801,7 @@ void DataPageTest::testAddInlineRecordData()
 		TS_ASSERT(cursor.isValid());
 		TS_ASSERT(! cursor.isInlineValue());
 		TS_ASSERT_EQUALS(key, cursor.key());
-		TS_ASSERT_EQUALS(1, cursor.partNum());
+		TS_ASSERT_EQUALS(1U, cursor.partNum());
 		TS_ASSERT_EQUALS(secondValueSize, cursor.largeValueSize());
 		TS_ASSERT_EQUALS(secondValuePage, cursor.firstLargeValuePageId());
 
@@ -821,7 +821,7 @@ void DataPageTest::testAddInlineRecordData()
 		TS_ASSERT(copiedCursor.isValid());
 		TS_ASSERT(copiedCursor.isInlineValue());
 		TS_ASSERT_EQUALS(key, copiedCursor.key());
-		TS_ASSERT_EQUALS(0, copiedCursor.partNum());
+		TS_ASSERT_EQUALS(0U, copiedCursor.partNum());
 		TS_ASSERT_EQUALS(firstValue, copiedCursor.inlineValue());
 		TS_ASSERT_EQUALS(firstRecord, copiedCursor.inlineRecord());
 
@@ -829,7 +829,7 @@ void DataPageTest::testAddInlineRecordData()
 		TS_ASSERT(copiedCursor.isValid());
 		TS_ASSERT(! copiedCursor.isInlineValue());
 		TS_ASSERT_EQUALS(key, copiedCursor.key());
-		TS_ASSERT_EQUALS(1, copiedCursor.partNum());
+		TS_ASSERT_EQUALS(1U, copiedCursor.partNum());
 		TS_ASSERT_EQUALS(secondValueSize, copiedCursor.largeValueSize());
 		TS_ASSERT_EQUALS(secondValuePage, copiedCursor.firstLargeValuePageId());
 		TS_ASSERT_EQUALS(secondRecord, copiedCursor.inlineRecord());

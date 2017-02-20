@@ -55,8 +55,10 @@ namespace {
 
 		TS_ASSERT_THROWS(bitmapPage.releasePage(0), DatabaseCorruptedException);
 		TS_ASSERT_THROWS(bitmapPage.releasePage(33), DatabaseCorruptedException);
-		TS_ASSERT_THROWS(bitmapPage.releasePage(endOfPageOffsetRange - 1), DatabaseCorruptedException);
-		TS_ASSERT_THROWS(bitmapPage.releasePage(endOfPageOffsetRange), InternalErrorException);
+		TS_ASSERT_THROWS(bitmapPage.releasePage(endOfPageOffsetRange - 1), DatabaseCorruptedException&); // test catch reference
+		TS_ASSERT_THROWS(bitmapPage.releasePage(endOfPageOffsetRange), const InternalErrorException&);   // test catch const reference
+		TS_ASSERT_THROWS(bitmapPage.releasePage(endOfPageOffsetRange), const DataError&);   // test that InternalErrorException is inherited
+		TS_ASSERT_THROWS(bitmapPage.releasePage(endOfPageOffsetRange), const Exception&);   // test that InternalErrorException is inherited
 
 		TS_ASSERT(bitmapPage.dirty());
 		bitmapPage.clearDirtyFlag();

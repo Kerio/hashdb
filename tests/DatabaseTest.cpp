@@ -1696,7 +1696,7 @@ namespace {
 				for (size_type i = 0; i < numberOfRecords; ++i) {
 					std::vector<partNum_t> partVec = db->listParts(keys[i]);
 					TS_ASSERT_EQUALS(1U, partVec.size());
-					TS_ASSERT_EQUALS(0, partVec[0]);
+					TS_ASSERT_EQUALS(0U, partVec[0]);
 				}
 
 				Statistics stats = db->statistics();
@@ -1739,7 +1739,7 @@ namespace {
 				for (size_type i = 0; i < numberOfRecords; ++i) {
 					std::vector<partNum_t> partVec = db->listParts(keys[i]);
 					TS_ASSERT_EQUALS(1U, partVec.size());
-					TS_ASSERT_EQUALS(0, partVec[0]);
+					TS_ASSERT_EQUALS(0U, partVec[0]);
 				}
 
 				// Remove and check.

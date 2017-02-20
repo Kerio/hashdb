@@ -123,8 +123,7 @@ void PageTest::testPutGet8()
 	TS_ASSERT_THROWS(page[PAGE_SIZE] = 0, InternalErrorException);
 	TS_ASSERT_THROWS(page.put8(PAGE_SIZE, 0), InternalErrorException);
 
-	Page::value_type byte;
-	TS_ASSERT_THROWS(byte = page[PAGE_SIZE], InternalErrorException);
+	TS_ASSERT_THROWS(page[PAGE_SIZE], InternalErrorException);
 }
 
 void PageTest::testPutGet16()
