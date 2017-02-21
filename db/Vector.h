@@ -96,6 +96,24 @@ namespace hashdb {
 			return index_ < other.index_;
 		}
 
+		bool operator>(const VectorIterator& other) const
+		{
+			HASHDB_ASSERT(parent_ == other.parent_);
+			return index_ > other.index_;
+		}
+
+		bool operator<=(const VectorIterator& other) const
+		{
+			HASHDB_ASSERT(parent_ == other.parent_);
+			return index_ <= other.index_;
+		}
+
+		bool operator>=(const VectorIterator& other) const
+		{
+			HASHDB_ASSERT(parent_ == other.parent_);
+			return index_ >= other.index_;
+		}
+
 		VectorIterator& operator++() // Prefix.
 		{
 			++index_;

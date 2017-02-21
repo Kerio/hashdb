@@ -409,4 +409,18 @@ void VectorTest::testIterator()
 
 	// reference operator[](size_t offset) const
 	TS_ASSERT_EQUALS(8, mutableVector.begin()[8]);
+
+	// operator<()
+	TS_ASSERT(mutableVector.begin() < mutableVector.end());
+
+	// operator<=()
+	TS_ASSERT(mutableVector.begin() <= mutableVector.end());
+	TS_ASSERT(mutableVector.begin() <= mutableVector.begin());
+
+	// operator>()
+	TS_ASSERT(mutableVector.end() > mutableVector.begin());
+
+	// operator>=()
+	TS_ASSERT(mutableVector.end() >= mutableVector.begin());
+	TS_ASSERT(mutableVector.end() >= mutableVector.end());
 }
