@@ -29,6 +29,7 @@
 #include "stdafx.h"
 #include <boost/filesystem.hpp>
 #include <kerio/hashdb/Constants.h>
+#include <sstream>
 #include "utils/SingleRead.h"
 #include "utils/SingleWrite.h"
 #include "utils/SingleDelete.h"
@@ -238,6 +239,40 @@ namespace hashdb {
 			return fileStatus.type() != boost::filesystem::file_not_found && fileStatus.type() != boost::filesystem::regular_file;
 		}
 
+		std::string singleFileTypeString(const boost::filesystem::file_status& fileStatus)
+		{
+			const boost::filesystem::file_type fileType = fileStatus.type();
+
+			switch (fileType) {
+			case boost::filesystem::status_error:
+				return "status_error";
+			case boost::filesystem::file_not_found:
+				return "file_not_found";
+			case boost::filesystem::regular_file:
+				return "regular_file";
+			case boost::filesystem::directory_file:
+				return "directory_file";
+			case boost::filesystem::symlink_file:
+				return "symlink_file";
+			case boost::filesystem::block_file:
+				return "block_file";
+			case boost::filesystem::character_file:
+				return "character_file";
+			case boost::filesystem::fifo_file:
+				return "fifo_file";
+			case boost::filesystem::socket_file:
+				return "socket_file";
+			case boost::filesystem::reparse_file:
+				return "reparse_file";
+			case boost::filesystem::type_unknown:
+				return "type_unknown";
+			default:
+				std::ostringstream os;
+				os << "unknown(" << fileType << ")";
+				return os.str();
+			}
+		}
+
 		bool singleFileExists(const boost::filesystem::file_status& fileStatus)
 		{
 			return fileStatus.type() == boost::filesystem::regular_file;
@@ -253,8 +288,8 @@ namespace hashdb {
 
 			RAISE_IO_ERROR_IF(bucketStatusError   && ! singleFileNotFound(bucketFileStatus),   "existence of the bucket file \"%s\" cannot be determined: %s", databaseFiles.bucketFile_.string(), bucketStatusError.message());
 			RAISE_IO_ERROR_IF(overflowStatusError && ! singleFileNotFound(overflowFileStatus), "existence of the overflow file \"%s\" cannot be determined: %s", databaseFiles.overflowFile_.string(), overflowStatusError.message());
-			RAISE_IO_ERROR_IF(singleFileIsNonRegular(bucketFileStatus),   "bucket file \"%s\" is not a regular file", databaseFiles.bucketFile_.string());
-			RAISE_IO_ERROR_IF(singleFileIsNonRegular(overflowFileStatus), "overflow file \"%s\" is not a regular file", databaseFiles.overflowFile_.string());
+			RAISE_IO_ERROR_IF(singleFileIsNonRegular(bucketFileStatus),   "bucket file \"%s\" is not a regular file: %s", databaseFiles.bucketFile_.string(), singleFileTypeString(bucketFileStatus));
+			RAISE_IO_ERROR_IF(singleFileIsNonRegular(overflowFileStatus), "overflow file \"%s\" is not a regular file: %s", databaseFiles.overflowFile_.string(), singleFileTypeString(overflowFileStatus));
 
 			return singleFileExists(bucketFileStatus) && singleFileExists(overflowFileStatus);
 		}
