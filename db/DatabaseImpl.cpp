@@ -234,11 +234,6 @@ namespace hashdb {
 			return fileStatus.type() == boost::filesystem::file_not_found;
 		}
 
-		bool singleFileIsNonRegular(const boost::filesystem::file_status& fileStatus)
-		{
-			return fileStatus.type() != boost::filesystem::file_not_found && fileStatus.type() != boost::filesystem::regular_file;
-		}
-
 		std::string singleFileTypeString(const boost::filesystem::file_status& fileStatus)
 		{
 			const boost::filesystem::file_type fileType = fileStatus.type();
@@ -288,8 +283,6 @@ namespace hashdb {
 
 			RAISE_IO_ERROR_IF(bucketStatusError   && ! singleFileNotFound(bucketFileStatus),   "existence of the bucket file \"%s\" cannot be determined: %s", databaseFiles.bucketFile_.string(), bucketStatusError.message());
 			RAISE_IO_ERROR_IF(overflowStatusError && ! singleFileNotFound(overflowFileStatus), "existence of the overflow file \"%s\" cannot be determined: %s", databaseFiles.overflowFile_.string(), overflowStatusError.message());
-			RAISE_IO_ERROR_IF(singleFileIsNonRegular(bucketFileStatus),   "bucket file \"%s\" is not a regular file: %s", databaseFiles.bucketFile_.string(), singleFileTypeString(bucketFileStatus));
-			RAISE_IO_ERROR_IF(singleFileIsNonRegular(overflowFileStatus), "overflow file \"%s\" is not a regular file: %s", databaseFiles.overflowFile_.string(), singleFileTypeString(overflowFileStatus));
 
 			return singleFileExists(bucketFileStatus) && singleFileExists(overflowFileStatus);
 		}
