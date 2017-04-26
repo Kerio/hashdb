@@ -236,7 +236,10 @@ namespace hashdb {
 
 		bool singleFileIsNonRegular(const boost::filesystem::file_status& fileStatus)
 		{
-			return fileStatus.type() != boost::filesystem::file_not_found && fileStatus.type() != boost::filesystem::regular_file;
+			return fileStatus.type() != boost::filesystem::file_not_found
+				&& fileStatus.type() != boost::filesystem::regular_file 
+				&& fileStatus.type() != boost::filesystem::reparse_file
+				&& fileStatus.type() != boost::filesystem::symlink_file;
 		}
 
 		std::string singleFileTypeString(const boost::filesystem::file_status& fileStatus)
@@ -288,6 +291,8 @@ namespace hashdb {
 
 			RAISE_IO_ERROR_IF(bucketStatusError   && ! singleFileNotFound(bucketFileStatus),   "existence of the bucket file \"%s\" cannot be determined: %s", databaseFiles.bucketFile_.string(), bucketStatusError.message());
 			RAISE_IO_ERROR_IF(overflowStatusError && ! singleFileNotFound(overflowFileStatus), "existence of the overflow file \"%s\" cannot be determined: %s", databaseFiles.overflowFile_.string(), overflowStatusError.message());
+
+			// Database files should be either regular files, reparse points (may be used when deduplication is enabled on Windows Server systems) or symlinks.
 			RAISE_IO_ERROR_IF(singleFileIsNonRegular(bucketFileStatus),   "bucket file \"%s\" is not a regular file: %s", databaseFiles.bucketFile_.string(), singleFileTypeString(bucketFileStatus));
 			RAISE_IO_ERROR_IF(singleFileIsNonRegular(overflowFileStatus), "overflow file \"%s\" is not a regular file: %s", databaseFiles.overflowFile_.string(), singleFileTypeString(overflowFileStatus));
 

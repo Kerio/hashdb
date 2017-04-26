@@ -28,6 +28,7 @@ Release/
 x64/
 x86/
 ipch/
+build/VS2010/HashDB.VC.db
 
 # Other
 __pycache__/
